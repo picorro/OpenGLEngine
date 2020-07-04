@@ -1,15 +1,15 @@
 #pragma once
-#include "triangle.h"
+#include "rectangle.h"
 
 
-void Triangle::addBufferData()
+void Rectangle::addBufferData()
 {
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 }
 
-void Triangle::update(Shader shader)
+void Rectangle::update(Shader shader)
 {
-	float timeValue = glfwGetTime();
+	/*float timeValue = glfwGetTime();
 	float greenValue = (sin(timeValue) / 2.0f) + 0.5f;
 	float redValue = (sin(timeValue / 3.0f) + 0.5f);
 	float blueValue = (sin(timeValue / 4.0f) + 0.5f);
@@ -20,5 +20,5 @@ void Triangle::update(Shader shader)
 	offset += 0.005f;
 	if (offset >= 1.5f)
 		offset = -1.5f;
-	glUniform1f(xOffset, offset);
+	glUniform1f(xOffset, offset);*/
 }

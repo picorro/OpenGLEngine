@@ -79,6 +79,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\DEV\glm-stable;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -127,17 +128,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="game.cpp" />
+    <ClCompile Include="gameObject.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="glad.cpp" />
+    <ClCompile Include="rec.cpp" />
+    <ClCompile Include="resourceManager.cpp" />
+    <ClCompile Include="shader.cpp" />
+    <ClCompile Include="spriteRenderer.cpp" />
     <ClCompile Include="stb.cpp" />
-    <ClCompile Include="triangle.cpp" />
-    <ClCompile Include="window.cpp" />
+    <ClCompile Include="rectangle.cpp" />
+    <ClCompile Include="texture.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="game.h" />
+    <ClInclude Include="gameObject.h" />
+    <ClInclude Include="rectangle.h" />
+    <ClInclude Include="resourceManager.h" />
+    <ClInclude Include="spriteRenderer.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="shader.h" />
-    <ClInclude Include="triangle.h" />
-    <ClInclude Include="window.h" />
+    <ClInclude Include="texture.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
