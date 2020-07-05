@@ -9,6 +9,7 @@
 #include "game.h"
 #include "resourceManager.h"
 #include "spriteRenderer.h"
+#include "gameObject.h";
 
 
 // Game-related State data
@@ -26,8 +27,10 @@ Game::~Game()
 	delete Renderer;
 }
 
+
 void Game::Init()
 {
+	objects.push_back(GameObject("face", 0, 0, 100, 100));
 	// load shaders
 	ResourceManager::LoadShader("Shaders/sprite.vs", "Shaders/sprite.frag", nullptr, "sprite");
 	// configure shaders
@@ -40,11 +43,12 @@ void Game::Init()
 	Renderer = new SpriteRenderer(temp);
 	// load textures
 	ResourceManager::LoadTexture("Resources/awesomeface.png", true, "face");
+	objects[0].Renderer = Renderer;
 }
 
 void Game::Update(float dt)
 {
-
+	
 }
 
 void Game::ProcessInput(float dt)
@@ -53,7 +57,8 @@ void Game::ProcessInput(float dt)
 }
 void Game::Render()
 {
-	Texture2D temp = ResourceManager::GetTexture("face");
-	Renderer->DrawSprite(temp,
-		glm::vec2(0.0f, 0.0f), glm::vec2(400.0f, 400.0f), 0.0f, glm::vec3(0.0f, 1.0f, 0.0f));
+	for (int i = 0; i < objects.size(); i++)
+	{
+		objects[i].Render();
+	}
 }

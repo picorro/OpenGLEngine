@@ -3,8 +3,23 @@ GameObject::GameObject()
 {
 
 }
+GameObject::GameObject(std::string texName, float pX, float pY, float sX, float sY) : transform(pX, pY, sX, sY)
+{
+	textureName = texName;
+}
+
 
 GameObject::~GameObject()
+{
+
+}
+void GameObject::Render()
+{
+	Texture2D sprite = ResourceManager::GetTexture(textureName);//I cannot create a Texture2D object cuz it crashes so I will leave it for now, this won't affect performance much anyway pls fix
+	Renderer->DrawSprite(sprite,
+		glm::vec2(transform.position.x, transform.position.y), glm::vec2(transform.scale.x, transform.scale.y), 0.0f, glm::vec3(1.0f, 1.0f, 1.0f));
+}
+void GameObject::Update()
 {
 
 }
