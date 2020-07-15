@@ -1,0 +1,11 @@
+TileMap
+TextureCount 1
+1 Resources/awesomeface.png
+TextureWidth 200
+TextureHeight 200
+MapHeight 3
+MapWidth 3
+EndOfParameters
+1 1 1
+1 2 1
+1 1 1

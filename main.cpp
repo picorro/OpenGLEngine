@@ -19,9 +19,9 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode);
 
 // The Width of the screen
-const unsigned int SCREEN_WIDTH = 1920;
+const unsigned int SCREEN_WIDTH = 1080;
 // The height of the screen
-const unsigned int SCREEN_HEIGHT = 1080;
+const unsigned int SCREEN_HEIGHT = 720;
 
 Game game(SCREEN_WIDTH, SCREEN_HEIGHT);
 
@@ -36,7 +36,7 @@ int main(int argc, char* argv[])
 #endif
 	glfwWindowHint(GLFW_RESIZABLE, false);
 
-	GLFWwindow* window = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "[]", glfwGetPrimaryMonitor(), nullptr);
+	GLFWwindow* window = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "NiggaBigDickFuckYoMamma", nullptr, nullptr);
 	glfwMakeContextCurrent(window);
 
 	// glad: load all OpenGL function pointers
@@ -88,7 +88,7 @@ int main(int argc, char* argv[])
 
 		// render
 		// ------
-		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+		glClearColor(0.0f, 0.0f, 0.4f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 		game.Render();
 

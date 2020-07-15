@@ -6,6 +6,10 @@
 #include <vector>;
 #include <algorithm>;
 #include <iostream>;
+#include "Sprite.h";
+#include "LevelManager.h";
+
+const std::string level1 = "Levels/Level1.txt";
 
 enum GameState {
 	GAME_ACTIVE,
@@ -15,7 +19,9 @@ enum GameState {
 class Game
 {
 public:
-	std::vector<GameObject> objects;
+	std::vector<GameObject*> objects;
+	LevelManager levelManager;
+	//GameObject object;
 	// game state
 	GameState    State;
 	bool         Keys[1024];
@@ -29,4 +35,5 @@ public:
 	void ProcessInput(float dt);
 	void Update(float dt);
 	void Render();
+	void FreeMemory();
 };

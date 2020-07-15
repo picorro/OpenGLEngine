@@ -6,7 +6,7 @@
 ** Creative Commons, either version 4 of the License, or (at your
 ** option) any later version.
 ******************************************************************/
-#include "game.h"
+#include "Game.h"
 #include "resourceManager.h"
 #include "spriteRenderer.h"
 #include "gameObject.h";
@@ -25,12 +25,12 @@ Game::Game(unsigned int width, unsigned int height)
 Game::~Game()
 {
 	delete Renderer;
+	FreeMemory();
 }
 
 
 void Game::Init()
 {
-	objects.push_back(GameObject("face", 0, 0, 100, 100));
 	// load shaders
 	ResourceManager::LoadShader("Shaders/sprite.vs", "Shaders/sprite.frag", nullptr, "sprite");
 	// configure shaders
@@ -42,13 +42,21 @@ void Game::Init()
 	Shader temp = ResourceManager::GetShader("sprite");
 	Renderer = new SpriteRenderer(temp);
 	// load textures
-	ResourceManager::LoadTexture("Resources/awesomeface.png", true, "face");
-	objects[0].Renderer = Renderer;
+	ResourceManager::LoadTexture("Resources/awesomeface.png", true, "Resources/awesomeface.png");
+	levelManager.LoadLevel(objects, level1);
+	for (int i = 0; i < objects.size(); i++)
+	{
+		objects[i]->Renderer = Renderer;
+	}
 }
 
 void Game::Update(float dt)
 {
-	
+	for (int i = 0; i < objects.size(); i++)
+	{
+		objects[i]->transform.position.x += 10 * dt;
+		objects[i]->transform.rotation += 10 * dt;
+	}
 }
 
 void Game::ProcessInput(float dt)
@@ -59,6 +67,13 @@ void Game::Render()
 {
 	for (int i = 0; i < objects.size(); i++)
 	{
-		objects[i].Render();
+		objects[i]->Render();
+	}
+}
+void Game::FreeMemory()
+{
+	for (int i = 0; i < objects.size(); i++)
+	{
+		delete(objects[i]);
 	}
 }

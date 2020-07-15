@@ -8,15 +8,18 @@
 class GameObject
 {
 public:
+	int ID;
 	std::string name;
 	Transform transform;
 	SpriteRenderer* Renderer = nullptr;
-	std::string textureName;
+
 	GameObject();
-	GameObject(std::string, float, float, float, float);
+	GameObject(float, float, float, float);
+	//GameObject(std::string, float, float, float, float);/
 	~GameObject();
-	void Render();
-	void Update();
+
+	virtual void Render();
+	virtual void Update();
 
 private:
 

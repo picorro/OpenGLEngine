@@ -18,6 +18,34 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="LevelManager.cpp" />
+    <ClCompile Include="glad.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="ResourceManager.cpp" />
+    <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="SpriteRenderer.cpp" />
+    <ClCompile Include="stb.cpp" />
+    <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="Transform.cpp" />
+    <ClCompile Include="Vector2.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="LevelManager.h" />
+    <ClInclude Include="ResourceManager.h" />
+    <ClInclude Include="Shader.h" />
+    <ClInclude Include="Sprite.h" />
+    <ClInclude Include="SpriteRenderer.h" />
+    <ClInclude Include="Stb_image.h" />
+    <ClInclude Include="Texture.h" />
+    <ClInclude Include="Transform.h" />
+    <ClInclude Include="Vector2.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{4327D04D-627F-49EC-B5AD-24041582BD31}</ProjectGuid>
@@ -127,33 +155,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="game.cpp" />
-    <ClCompile Include="gameObject.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="glad.cpp" />
-    <ClCompile Include="rec.cpp" />
-    <ClCompile Include="resourceManager.cpp" />
-    <ClCompile Include="shader.cpp" />
-    <ClCompile Include="spriteRenderer.cpp" />
-    <ClCompile Include="stb.cpp" />
-    <ClCompile Include="rectangle.cpp" />
-    <ClCompile Include="texture.cpp" />
-    <ClCompile Include="Transform.cpp" />
-    <ClCompile Include="Vector2.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="game.h" />
-    <ClInclude Include="gameObject.h" />
-    <ClInclude Include="rectangle.h" />
-    <ClInclude Include="resourceManager.h" />
-    <ClInclude Include="spriteRenderer.h" />
-    <ClInclude Include="stb_image.h" />
-    <ClInclude Include="shader.h" />
-    <ClInclude Include="texture.h" />
-    <ClInclude Include="Transform.h" />
-    <ClInclude Include="Vector2.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
