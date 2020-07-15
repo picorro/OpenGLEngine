@@ -1,4 +1,4 @@
-# OpenGL Engine
+# C++ OpenGL Game Engine
 A simple OpenGL rendering system from https://learnopengl.com/
 Initially I thought of writing my own from scratch, but I felt too overwhelmed, so I will edit the rendering system once I realize fully what I want to do.
 
