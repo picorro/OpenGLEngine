@@ -1,4 +1,4 @@
-TileMap
+DisabledTileMap
 TextureCount 1
 1 Resources/awesomeface.png
 TextureWidth 200
@@ -9,3 +9,12 @@ EndOfParameters
 1 1 1
 1 2 1
 1 1 1
+-----------------------------------
+ParticleSpawner
+TextureCount 1
+1 Resources/awesomeface.png
+SpawnSpeed 10
+MinimumVelocity 10 10
+MaximumVelocity 100 100
+MinimumRotation -3
+MaximumRotation 3

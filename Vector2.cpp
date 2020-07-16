@@ -31,3 +31,13 @@ void Vector2::operator=(Vector2 other)
 	x = other.x;
 	y = other.y;
 }
+void Vector2::operator+=(Vector2 other)
+{
+	x += other.x;
+	y += other.y;
+}
+Vector2 Vector2::operator*(float f)
+{
+	Vector2 vector = Vector2(x * f, y * f);
+	return vector;
+}

@@ -21,6 +21,6 @@ void GameObject::Render()
 {
 	
 }
-void GameObject::Update()
+void GameObject::Update(float dt)
 {
 }

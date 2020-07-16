@@ -1,6 +1,7 @@
 #pragma once
 #include "GameObject.h";
 #include <iostream>;
+
 class Sprite: public GameObject
 {
 public:
@@ -8,7 +9,7 @@ public:
 	Sprite(std::string, float, float, float, float);
 	~Sprite();
 	void Render();
-	void Update();
+	void Update(float);
 
 private:
 

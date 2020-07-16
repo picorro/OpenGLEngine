@@ -8,6 +8,7 @@
 #include <iostream>;
 #include "Sprite.h";
 #include "LevelManager.h";
+#include "ParticleSpawner.h";
 
 const std::string level1 = "Levels/Level1.txt";
 
@@ -21,6 +22,7 @@ class Game
 public:
 	std::vector<GameObject*> objects;
 	LevelManager levelManager;
+	ParticleSpawner* particleSpawner;
 	//GameObject object;
 	// game state
 	GameState    State;

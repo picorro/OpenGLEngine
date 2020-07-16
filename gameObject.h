@@ -19,7 +19,7 @@ public:
 	~GameObject();
 
 	virtual void Render();
-	virtual void Update();
+	virtual void Update(float);
 
 private:
 

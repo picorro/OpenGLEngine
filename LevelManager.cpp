@@ -73,17 +73,17 @@ void LevelManager::LoadLevel(std::vector<GameObject*>& vec, std::string fileName
 				else if (str == "EndOfParameters")
 					break;
 			}
-		}
-		for (int i = 0; i < mapWidth; i++)
-		{
-			printf("\n");
-			for (int j = 0; j < mapHeight; j++)
+			for (int i = 0; i < mapWidth; i++) // read the actual map now that all parameters have been set and create the game objects
 			{
-				file >> str;
-				std::cout << str << " ";
-				auto it = map.find(atoi(str.c_str()));
-				if(it != map.end())
-					vec.push_back(new Sprite(map[atoi(str.c_str())], textureWidth * i, textureHeight * j, textureWidth, textureHeight));
+				printf("\n");
+				for (int j = 0; j < mapHeight; j++)
+				{
+					file >> str;
+					std::cout << str << " ";
+					auto it = map.find(atoi(str.c_str()));
+					if (it != map.end())
+						vec.push_back(new Sprite(map[atoi(str.c_str())], textureWidth * i, textureHeight * j, textureWidth, textureHeight));
+				}
 			}
 		}
 	}

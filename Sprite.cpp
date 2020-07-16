@@ -1,8 +1,8 @@
 #include "Sprite.h";
 
-Sprite::Sprite(std::string texName, float pX, float pY, float sX, float sY) : GameObject(pX, pY, sX, sY)
+Sprite::Sprite(std::string textureName, float pX, float pY, float sX, float sY) : GameObject(pX, pY, sX, sY)
 {
-	textureName = texName;
+	this->textureName = textureName;
 }
 
 Sprite::~Sprite()
@@ -16,7 +16,7 @@ void Sprite::Render()
 		glm::vec2(transform.position.x, transform.position.y), glm::vec2(transform.scale.x, transform.scale.y), transform.rotation, glm::vec3(1.0f, 1.0f, 1.0f));
 }
 
-void Sprite::Update()
+void Sprite::Update(float dt)
 {
 
 }
