@@ -1,8 +1,55 @@
 #include "LevelManager.h";
+static enum stringValue
+{
+	EndOfParameters, //TileMap, ParticleSpawner
+	X, Y, //TileMap, ParticleSpawner
+	TextureCount, // TileMap, ParticleSpawner
+	TileMap,
+		TextureWidth,
+		TextureHeight,
+		MapHeight,
+		MapWidth,
+	ParticleSpawnerENUM,
+		SpawnRate,
+		MinimalParticleLifetime,
+		MaximalParticleLifetime,
+		MinimalVelocity,
+		MaximalVelocity,
+		MinimalRotationSpeed,
+		MaximalRotationSpeed,
+		MinimalParticleSize,
+		MaximalParticleSize
+};
+
+static std::map<std::string, stringValue> stringMap;
+
+void prepareMap()
+{
+	stringMap.insert(std::pair<std::string, stringValue>("EndOfParameters", EndOfParameters));
+	stringMap.insert(std::pair<std::string, stringValue>("TileMap", TileMap));
+	stringMap.insert(std::pair<std::string, stringValue>("ParticleSpawner", ParticleSpawnerENUM));
+	stringMap.insert(std::pair<std::string, stringValue>("TextureCount", TextureCount));
+	stringMap.insert(std::pair<std::string, stringValue>("TextureWidth", TextureWidth));
+	stringMap.insert(std::pair<std::string, stringValue>("TextureHeight", TextureHeight));
+	stringMap.insert(std::pair<std::string, stringValue>("MapHeight", MapHeight));
+	stringMap.insert(std::pair<std::string, stringValue>("MapWidth", MapWidth));
+	stringMap.insert(std::pair<std::string, stringValue>("X", X));
+	stringMap.insert(std::pair<std::string, stringValue>("Y", Y));
+	stringMap.insert(std::pair<std::string, stringValue>("SpawnRate", SpawnRate));
+	stringMap.insert(std::pair<std::string, stringValue>("MinimalParticleLifetime", MinimalParticleLifetime));
+	stringMap.insert(std::pair<std::string, stringValue>("MaximalParticleLifetime", MaximalParticleLifetime));
+	stringMap.insert(std::pair<std::string, stringValue>("MinimalVelocity", MinimalVelocity));
+	stringMap.insert(std::pair<std::string, stringValue>("MaximalVelocity", MaximalVelocity));
+	stringMap.insert(std::pair<std::string, stringValue>("MinimalRotationSpeed", MinimalRotationSpeed));
+	stringMap.insert(std::pair<std::string, stringValue>("MaximalRotationSpeed", MaximalRotationSpeed));
+	stringMap.insert(std::pair<std::string, stringValue>("MinimalParticleSize", MinimalParticleSize));
+	stringMap.insert(std::pair<std::string, stringValue>("MaximalParticleSize", MaximalParticleSize));
+
+}
 
 LevelManager::LevelManager()
 {
-
+	prepareMap();
 }
 
 LevelManager::~LevelManager()
@@ -10,84 +57,6 @@ LevelManager::~LevelManager()
 
 }
 
-void LevelManager::LoadLevel(std::vector<GameObject*>& vec, std::string fileName)
-{
-	ClearLevel();
-	std::ifstream file((fileName));
-	std::string str;
-
-	std::map<int, std::string> map; // number corresponding to texture name in file
-	int textureCount = 0;
-	int textureWidth = 0, textureHeight = 0;
-	int mapHeight = 0, mapWidth = 0;
-
-	std::cout << "Checking " << fileName << std::endl;
-	while (file >> str) //TO DO add bools to make it not check with string every time cuz its prolly slow (f.e. if (bool && str == std::string))
-	{
-		if (str == "TileMap") // this will load create and add objects to the go vector according to the data in file
-		{					  // data in file must follow a standard, because errors not handled //TO DO HANDLE ERRORS
-			std::cout << "TileMap found.\n";
-			while (file >> str) // string is not supported in switch :'(
-			{
-				if (str == "TextureCount")
-				{
-					file >> str; // enters count
-					textureCount = atoi(str.c_str());
-					std::cout << "\t" << textureCount << " Texture(s) found.\n";
-					for (int i = 0; i < textureCount; i++)
-					{
-						file >> str; // enters texture number
-						int temp = atoi(str.c_str());
-						file >> str; // enters texture name
-						map.insert(std::pair<int, std::string>(temp, str));
-					}
-					for (auto it = map.begin(); it != map.end(); it++)
-					{
-						std::cout << "\t\t" << it->first << " " << it->second << "\n";
-					}
-				}
-				else if (str == "TextureWidth")
-				{
-					file >> str;
-					textureWidth = atoi(str.c_str());
-					printf("\tTextureWidth: %d\n", textureWidth);
-				}
-				else if (str == "TextureHeight")
-				{
-					file >> str;
-					textureHeight = atoi(str.c_str());
-					printf("\tTextureHeight: %d\n", textureHeight);
-				}
-				else if (str == "MapHeight")
-				{
-					file >> str;
-					mapHeight = atoi(str.c_str());
-					printf("\tMapHeight: %d\n", mapHeight);
-				}
-				else if (str == "MapWidth")
-				{
-					file >> str;
-					mapWidth = atoi(str.c_str());
-					printf("\tMapWidth: %d\n", mapWidth);
-				}
-				else if (str == "EndOfParameters")
-					break;
-			}
-			for (int i = 0; i < mapWidth; i++) // read the actual map now that all parameters have been set and create the game objects
-			{
-				printf("\n");
-				for (int j = 0; j < mapHeight; j++)
-				{
-					file >> str;
-					std::cout << str << " ";
-					auto it = map.find(atoi(str.c_str()));
-					if (it != map.end())
-						vec.push_back(new Sprite(map[atoi(str.c_str())], textureWidth * i, textureHeight * j, textureWidth, textureHeight));
-				}
-			}
-		}
-	}
-}
 void LevelManager::SaveLevel(std::vector<GameObject*>& vec, std::string fileName)
 {
 
@@ -96,4 +65,215 @@ void LevelManager::SaveLevel(std::vector<GameObject*>& vec, std::string fileName
 void LevelManager::ClearLevel()
 {
 
+}
+void LevelManager::LoadLevel(std::vector<GameObject*>& vec, std::string fileName)
+{
+	ClearLevel();
+	std::ifstream file((fileName));
+	std::string str;
+
+	std::cout << "Checking " << fileName << std::endl;
+
+	while (file >> str)
+	{
+		if (stringMap.find(str) != stringMap.end())
+		{
+			switch (stringMap[str])
+			{
+			case TileMap:
+				LoadTileMap(file, vec);
+			case ParticleSpawnerENUM:
+				LoadParticleSpawner(file, vec);
+			}
+		}
+	}
+}
+void LevelManager::LoadTileMap(std::ifstream &file, std::vector<GameObject*>& vec)
+{
+	std::map<int, std::string> map; // texture name corresponding to number
+	int textureCount = 0;
+	int textureWidth = 0, textureHeight = 0;
+	int mapHeight = 0, mapWidth = 0;
+	int x = 0, y = 0;
+	std::string str;
+	bool readComplete = false;
+	printf("TileMap found!\n");
+	while (file >> str)
+	{
+		if (stringMap.find(str) != stringMap.end())
+		{
+			switch (stringMap[str])
+			{
+			case TextureCount:
+				file >> str; // enters count
+				textureCount = atoi(str.c_str());
+				std::cout << "\t" << textureCount << " Texture(s) found.\n";
+				for (int i = 0; i < textureCount; i++)
+				{
+					file >> str; // enters texture number
+					int temp = atoi(str.c_str());
+					file >> str; // enters texture name
+					map.insert(std::pair<int, std::string>(temp, str));
+				}
+				for (auto it = map.begin(); it != map.end(); it++)
+				{
+					std::cout << "\t\t" << it->first << " " << it->second << "\n";
+				}
+				break;
+			case TextureWidth:
+				file >> str;
+				textureWidth = atoi(str.c_str());
+				printf("\tTextureWidth: %d\n", textureWidth);
+				break;
+			case TextureHeight:
+				file >> str;
+				textureHeight = atoi(str.c_str());
+				printf("\tTextureHeight: %d\n", textureHeight);
+				break;
+			case MapHeight:
+				file >> str;
+				mapHeight = atoi(str.c_str());
+				printf("\tMapHeight: %d\n", mapHeight);
+				break;
+			case MapWidth:
+				file >> str;
+				mapWidth = atoi(str.c_str());
+				printf("\tMapWidth: %d\n", mapWidth);
+				break;
+			case X:
+				file >> str;
+				x = atoi(str.c_str());
+				printf("\tX: %d\n", x);
+				break;
+			case Y:
+				file >> str;
+				y = atoi(str.c_str());
+				printf("\tY: %d\n", y);
+				break;
+			case EndOfParameters:
+				for (int i = 0; i < mapWidth; i++) // read the actual map now that all parameters have been set and create the game objects
+				{
+					for (int j = 0; j < mapHeight; j++)
+					{
+						file >> str;
+						auto it = map.find(atoi(str.c_str()));
+						if (it != map.end())
+							vec.push_back(new Sprite(map[atoi(str.c_str())], x + textureWidth * i, y + textureHeight * j, textureWidth, textureHeight, 0));
+					}
+				}
+				std::cout << "\tTileMap should contain " << mapHeight * mapWidth << " tiles\n";
+				readComplete = true;
+				break;
+			}
+		}
+		if (readComplete)
+			break;
+	}
+}
+void LevelManager::LoadParticleSpawner(std::ifstream& file, std::vector<GameObject*>& vec)
+{
+
+	std::map<int, std::string> map;
+	int textureCount = 0;
+	int spawnRate = 1, minimalParticleSize = 0, maximalParticleSize = 0, x = 0, y = 0;
+	Vector2 minimalVelocity(0, 0);
+	Vector2 maximalVelocity(0, 0);
+	float minimalRotationSpeed = 0, maximalRotationSpeed = 0, minimalParticleLifetime = 0, maximalParticleLifetime = 0;
+	std::string str;
+	float tempX = 0, tempY = 0;
+	printf("ParticleSpawner Found!\n");
+	while (file >> str)
+	{
+		if (stringMap.find(str) != stringMap.end())
+		{
+			switch (stringMap[str])
+			{
+			case TextureCount:
+				file >> str; // enters count
+				textureCount = atoi(str.c_str());
+				std::cout << "\t" << textureCount << " Texture(s) found.\n";
+				for (int i = 0; i < textureCount; i++)
+				{
+					file >> str; // enters texture number
+					int temp = atoi(str.c_str());
+					file >> str; // enters texture name
+					map.insert(std::pair<int, std::string>(temp, str));
+				}
+				for (auto it = map.begin(); it != map.end(); it++)
+				{
+					std::cout << "\t\t" << it->first << " " << it->second << "\n";
+				}
+				break;
+			case SpawnRate:
+				file >> str;
+				spawnRate = atoi(str.c_str());
+				printf("\tSpawnRate: %d\n", spawnRate);
+				break;
+			case MinimalParticleLifetime:
+				file >> str;
+				minimalParticleLifetime = atoi(str.c_str());
+				printf("\tMinimalParticleLifetime: %f\n", minimalParticleLifetime);
+				break;
+			case MaximalParticleLifetime:
+				file >> str;
+				maximalParticleLifetime = atoi(str.c_str());
+				printf("\tMaximalParticleLifetime: %f\n", maximalParticleLifetime);
+				break;
+			case MinimalVelocity:
+				file >> str;
+				tempX = atoi(str.c_str());
+				file >> str;
+				tempY = atoi(str.c_str());
+				minimalVelocity = Vector2(tempX, tempY);
+				printf("\tMinimalVelocity: [%f; %f]\n", minimalVelocity.x, minimalVelocity.y);
+				break;
+			case MaximalVelocity:
+				file >> str;
+				tempX = atoi(str.c_str());
+				file >> str;
+				tempY = atoi(str.c_str());
+				maximalVelocity = Vector2(tempX, tempY);
+				printf("\tMaximalVelocity: [%f; %f]\n", maximalVelocity.x, maximalVelocity.y);
+				break;
+			case MinimalRotationSpeed:
+				file >> str;
+				minimalRotationSpeed = atoi(str.c_str());
+				printf("\tMinimalRotationSpeed: %f\n", minimalRotationSpeed);
+				break;
+			case MaximalRotationSpeed:
+				file >> str;
+				maximalRotationSpeed = atoi(str.c_str());
+				printf("\tMaximalRotationSpeed: %f\n", maximalRotationSpeed);
+				break;
+			case MinimalParticleSize:
+				file >> str;
+				minimalParticleSize = atoi(str.c_str());
+				printf("\tMinimalParticleSize: %d\n", minimalParticleSize);
+				break;
+			case MaximalParticleSize:
+				file >> str;
+				maximalParticleSize = atoi(str.c_str());
+				printf("\tMaximalParticleSize: %d\n", maximalParticleSize);
+				break;
+			case X:
+				file >> str;
+				x = atoi(str.c_str());
+				printf("\tX: %d\n", x);
+				break;
+			case Y:
+				file >> str;
+				y = atoi(str.c_str());
+				printf("\tY: %d\n", y);
+				break;
+			case EndOfParameters:
+				vec.push_back(new ParticleSpawner("Resources/transparentface.png", spawnRate,
+					minimalParticleLifetime, maximalParticleLifetime,
+					minimalVelocity, maximalVelocity,
+					minimalRotationSpeed, maximalRotationSpeed,
+					minimalParticleSize, maximalParticleSize,
+					x, y));
+				break;
+			}
+		}
+	}
 }

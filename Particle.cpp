@@ -1,9 +1,9 @@
 #include "Particle.h";
 
-Particle::Particle(std::string textureName, float pX, float pY, float sX, float sY, Vector2 velocity, float rotation, float timeLeftUntilDestruction): Sprite(textureName, pX, pY, sX, sY)
+Particle::Particle(std::string textureName, float pX, float pY, float sX, float sY, float rotation, Vector2 velocity, float rotationSpeed, float timeLeftUntilDestruction): Sprite(textureName, pX, pY, sX, sY, rotation)
 {
 	this->velocity = velocity;
-	this->rotation = rotation;
+	this->rotationSpeed = rotationSpeed;
 	this->timeLeftUntilDestruction = timeLeftUntilDestruction;
 }
 
@@ -21,6 +21,6 @@ void Particle::Render()
 void Particle::Update(float dt)
 {
 	transform.position += velocity * dt;
-	transform.rotation += rotation * dt;
+	transform.rotation += rotationSpeed * dt;
 	timeLeftUntilDestruction -= dt;
 }

@@ -5,7 +5,7 @@ ParticleSpawner::ParticleSpawner(std::string textureName, int spawnRate,
 	Vector2 minimalVelocity, Vector2 maximalVelocity,
 	float minimalRotationSpeed, float maximalRotationSpeed,
 	int minimalParticleSize, int maximalParticleSize,
-	float x, float y): GameObject(x, y, 0, 0)
+	float x, float y): GameObject(x, y, 0, 0, 0)
 {
 	this->textureName = textureName;
 	this->spawnRate = spawnRate;
@@ -31,19 +31,21 @@ ParticleSpawner::~ParticleSpawner()
 
 void ParticleSpawner::Update(float dt)
 {
+	std::cout << particles.size() << std::endl;
 	timeUntilNextSpawn -= dt;
 	if (timeUntilNextSpawn <= 0) //SPOOOWN
 	{
 		int size = rand() % (maximalParticleSize - minimalParticleSize + 1) + minimalParticleSize;
 		Particle* temp = new Particle(textureName, transform.position.x, transform.position.y,
 			size, size,
+			rand() % 360,
 			Vector2(rand() % (int)(maximalVelocity.x - minimalVelocity.x + 1) + (int)minimalVelocity.x,
 			rand() % (int)(maximalVelocity.y - minimalVelocity.y + 1) + (int)minimalVelocity.y),
 			rand() % (int)(maximalRotationSpeed - minimalRotationSpeed + 1) + (int)minimalRotationSpeed,
-			rand() % (int)(maximalRotationSpeed - maximalParticleLifeTime + 1) + (int)minimalParticleLifeTime);
+			rand() % (int)(maximalParticleLifeTime - minimalParticleLifeTime + 1) + (int)minimalParticleLifeTime);
 		temp->Renderer = Renderer;
 		particles.push_back(temp);
-		timeUntilNextSpawn = 1 / spawnRate;
+		timeUntilNextSpawn = 1.0 / spawnRate;
 	}
 	for (int i = 0; i < particles.size(); i++)
 	{

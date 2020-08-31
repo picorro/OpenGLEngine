@@ -1,6 +1,6 @@
 #include "Sprite.h";
 
-Sprite::Sprite(std::string textureName, float pX, float pY, float sX, float sY) : GameObject(pX, pY, sX, sY)
+Sprite::Sprite(std::string textureName, float pX, float pY, float sX, float sY, float rotation) : GameObject(pX, pY, sX, sY, rotation)
 {
 	this->textureName = textureName;
 }

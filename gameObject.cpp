@@ -3,7 +3,7 @@ GameObject::GameObject()
 {
 
 }
-GameObject::GameObject(float pX, float pY, float sX, float sY): transform(pX, pY, sX, sY)
+GameObject::GameObject(float pX, float pY, float sX, float sY, float rotation): transform(pX, pY, sX, sY, rotation)
 {
 	ID = 0;
 }
