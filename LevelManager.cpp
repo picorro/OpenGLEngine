@@ -82,8 +82,11 @@ void LevelManager::LoadLevel(std::vector<GameObject*>& vec, std::string fileName
 			{
 			case TileMap:
 				LoadTileMap(file, vec);
+				break;
+			
 			case ParticleSpawnerENUM:
 				LoadParticleSpawner(file, vec);
+				break;
 			}
 		}
 	}

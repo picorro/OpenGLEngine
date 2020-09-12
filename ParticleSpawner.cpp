@@ -31,7 +31,6 @@ ParticleSpawner::~ParticleSpawner()
 
 void ParticleSpawner::Update(float dt)
 {
-	std::cout << particles.size() << std::endl;
 	timeUntilNextSpawn -= dt;
 	if (timeUntilNextSpawn <= 0) //SPOOOWN
 	{

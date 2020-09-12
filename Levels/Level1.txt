@@ -1,4 +1,4 @@
-TileMap!
+TileMap
 TextureCount 1
 1 Resources/awesomeface.png
 TextureWidth 200
@@ -14,10 +14,10 @@ EndOfParameters
 
 -----------------------------------
 
-ParticleSpawner
+Tilemap!
 TextureCount 1
 1 Resources/transparentface.png
-SpawnRate 60
+SpawnRate 50
 MinimalParticleLifetime 3
 MaximalParticleLifetime 5
 MinimalVelocity -200 -200
