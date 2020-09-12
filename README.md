@@ -4,6 +4,6 @@ Initially I thought of writing my own from scratch, but I felt too overwhelmed, 
 
 Currently I am working on creating my first Components such as Transform, Camera (this will be a challenge likely), some physics components.
 
-First I want to make some Newton's (Gravitational) rigidbodies and create a planetary physics simulation. Since I can always expand the list of Components it does not really matter where I start.
+Since I can always expand the list of Components it does not really matter where I start.
 
 Ultimately I would hope this to be something even remotely close to a game engine.
