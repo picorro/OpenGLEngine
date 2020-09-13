@@ -24,3 +24,8 @@ void GameObject::Render()
 void GameObject::Update(float dt)
 {
 }
+
+void GameObject::ProcessInput(float dt)
+{
+
+}

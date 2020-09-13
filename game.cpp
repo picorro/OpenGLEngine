@@ -46,6 +46,7 @@ void Game::Init()
 	ResourceManager::LoadTexture("Resources/awesomeface.png", true, "Resources/awesomeface.png");
 	ResourceManager::LoadTexture("Resources/transparentface.png", true, "Resources/transparentface.png");
 	levelManager.LoadLevel(objects, level1);
+	objects.push_back(new Player("Resources/transparentface.png", 0, 0, 50, 50, 0));
 	for (int i = 0; i < objects.size(); i++)
 	{
 		objects[i]->Renderer = Renderer;
@@ -61,7 +62,10 @@ void Game::Update(float dt)
 
 void Game::ProcessInput(float dt)
 {
-
+	for (int i = 0; i < objects.size(); i++)
+	{
+		objects[i]->ProcessInput(dt);
+	}
 }
 void Game::Render()
 {

@@ -9,6 +9,7 @@
 #include "Sprite.h";
 #include "LevelManager.h";
 #include "ParticleSpawner.h";
+#include "Player.h"
 
 const std::string level1 = "Levels/Level1.txt";
 
