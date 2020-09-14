@@ -80,7 +80,7 @@ int main(int argc, char* argv[])
 
 		// manage user input
 		// -----------------
-		game.ProcessInput(deltaTime);
+		game.ProcessInput();
 
 		// update game state
 		// -----------------

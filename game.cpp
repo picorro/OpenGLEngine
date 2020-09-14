@@ -6,9 +6,9 @@
 ** Creative Commons, either version 4 of the License, or (at your
 ** option) any later version.
 ******************************************************************/
-#include "Game.h"
-#include "resourceManager.h"
-#include "spriteRenderer.h"
+#include "Game.h";
+#include "resourceManager.h";
+#include "spriteRenderer.h";
 #include "gameObject.h";
 
 
@@ -46,12 +46,13 @@ void Game::Init()
 	ResourceManager::LoadTexture("Resources/awesomeface.png", true, "Resources/awesomeface.png");
 	ResourceManager::LoadTexture("Resources/transparentface.png", true, "Resources/transparentface.png");
 	levelManager.LoadLevel(objects, level1);
-	objects.push_back(new Player("Resources/transparentface.png", 0, 0, 50, 50, 0));
+	objects.push_back(player);
 	for (int i = 0; i < objects.size(); i++)
 	{
 		objects[i]->Renderer = Renderer;
 	}
 }
+
 void Game::Update(float dt)
 {
 	for (int i = 0; i < objects.size(); i++)
@@ -60,12 +61,31 @@ void Game::Update(float dt)
 	}
 }
 
-void Game::ProcessInput(float dt)
+void Game::ProcessInput()
 {
-	for (int i = 0; i < objects.size(); i++)
+	if (this->Keys[GLFW_KEY_A])
 	{
-		objects[i]->ProcessInput(dt);
+		player->physicsBody.velocity.x = -player->movementSpeed;
 	}
+	else if (this->Keys[GLFW_KEY_D])
+	{
+		player->physicsBody.velocity.x = player->movementSpeed;
+	}
+	else
+		player->physicsBody.velocity.x = 0;
+
+	if (this->Keys[GLFW_KEY_W])
+	{
+		player->physicsBody.velocity.y = -player->movementSpeed;
+	}
+	else if (this->Keys[GLFW_KEY_S])
+	{
+		player->physicsBody.velocity.y = player->movementSpeed;
+	}
+	else
+		player->physicsBody.velocity.y = 0;
+
+
 }
 void Game::Render()
 {

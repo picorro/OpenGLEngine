@@ -1,4 +1,6 @@
 #pragma once
+#include <glad.h>
+#include <glfw3.h>
 #include "resourceManager.h";
 #include "spriteRenderer.h";
 #include "Vector2.h";
@@ -24,6 +26,8 @@ public:
 	std::vector<GameObject*> objects;
 	LevelManager levelManager;
 	ParticleSpawner* particleSpawner;
+	Player* player = new Player("Resources/transparentface.png", 0, 0, 50, 50, 0, 100);
+
 	//GameObject object;
 	// game state
 	GameState    State;
@@ -35,7 +39,7 @@ public:
 	// initialize game state (load all shaders/textures/levels)
 	void Init();
 	// game loop
-	void ProcessInput(float dt);
+	void ProcessInput();
 	void Update(float dt);
 	void Render();
 	void FreeMemory();
