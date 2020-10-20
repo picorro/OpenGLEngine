@@ -3,8 +3,9 @@
 class Component
 {
 public:
-	Entity* parent = nullptr;
-	Component(Entity*);
+	GameObject* parent = nullptr;
+	Component(GameObject*);
 	~Component();
+	virtual void Update(float) {};
 };
 

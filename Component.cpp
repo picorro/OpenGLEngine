@@ -1,6 +1,6 @@
 #include "Component.h"
 
-Component::Component(Entity* parent)
+Component::Component(GameObject* parent)
 {
 	this->parent = parent;
 }

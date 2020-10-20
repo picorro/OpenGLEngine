@@ -4,7 +4,7 @@ static enum stringValue
 	EndOfParameters, //TileMap, ParticleSpawner
 	X, Y, //TileMap, ParticleSpawner
 	TextureCount, // TileMap, ParticleSpawner
-	TileMap,
+	TileMapENUM,
 		TextureWidth,
 		TextureHeight,
 		MapHeight,
@@ -26,7 +26,7 @@ static std::map<std::string, stringValue> stringMap;
 void prepareMap()
 {
 	stringMap.insert(std::pair<std::string, stringValue>("EndOfParameters", EndOfParameters));
-	stringMap.insert(std::pair<std::string, stringValue>("TileMap", TileMap));
+	stringMap.insert(std::pair<std::string, stringValue>("TileMap", TileMapENUM));
 	stringMap.insert(std::pair<std::string, stringValue>("ParticleSpawner", ParticleSpawnerENUM));
 	stringMap.insert(std::pair<std::string, stringValue>("TextureCount", TextureCount));
 	stringMap.insert(std::pair<std::string, stringValue>("TextureWidth", TextureWidth));
@@ -66,7 +66,7 @@ void LevelManager::ClearLevel()
 {
 
 }
-void LevelManager::LoadLevel(std::vector<GameObject*>& vec, std::string fileName)
+void LevelManager::LoadLevel(std::vector<GameObject*>& vec, std::string fileName, SpriteRenderer* Renderer)
 {
 	ClearLevel();
 	std::ifstream file((fileName));
@@ -80,8 +80,8 @@ void LevelManager::LoadLevel(std::vector<GameObject*>& vec, std::string fileName
 		{
 			switch (stringMap[str])
 			{
-			case TileMap:
-				LoadTileMap(file, vec);
+			case TileMapENUM:
+				LoadTileMap(file, vec, Renderer);
 				break;
 			
 			case ParticleSpawnerENUM:
@@ -91,7 +91,7 @@ void LevelManager::LoadLevel(std::vector<GameObject*>& vec, std::string fileName
 		}
 	}
 }
-void LevelManager::LoadTileMap(std::ifstream &file, std::vector<GameObject*>& vec)
+void LevelManager::LoadTileMap(std::ifstream &file, std::vector<GameObject*>& vec, SpriteRenderer* Renderer)
 {
 	std::map<int, std::string> map; // texture name corresponding to number
 	int textureCount = 0;
@@ -154,6 +154,7 @@ void LevelManager::LoadTileMap(std::ifstream &file, std::vector<GameObject*>& ve
 				printf("\tY: %d\n", y);
 				break;
 			case EndOfParameters:
+				std::vector<Tile*> tileVector;
 				for (int i = 0; i < mapWidth; i++) // read the actual map now that all parameters have been set and create the game objects
 				{
 					for (int j = 0; j < mapHeight; j++)
@@ -161,9 +162,17 @@ void LevelManager::LoadTileMap(std::ifstream &file, std::vector<GameObject*>& ve
 						file >> str;
 						auto it = map.find(atoi(str.c_str()));
 						if (it != map.end())
-							vec.push_back(new Sprite(map[atoi(str.c_str())], x + textureWidth * i, y + textureHeight * j, textureWidth, textureHeight, 0));
+						{
+							tileVector.push_back(new Tile(map[atoi(str.c_str())], x + textureWidth * i, y + textureHeight * j, textureWidth, textureHeight, 0));
+						}
 					}
 				}
+				for (int i = 0; i < tileVector.size(); i++)
+				{
+					tileVector[i]->Renderer = Renderer;
+				}
+				TileMap* tileMap = new TileMap(tileVector);
+				vec.push_back(tileMap);
 				std::cout << "\tTileMap should contain " << mapHeight * mapWidth << " tiles\n";
 				readComplete = true;
 				break;

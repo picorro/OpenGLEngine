@@ -1,11 +1,13 @@
 #pragma once
 #include <vector>
-#include "Sprite.h"
+#include "Sprite.h";
+#include "Tile.h";
 
 class TileMap: public GameObject
 {
-	std::vector<Sprite*> tiles; // should be tiles not sprites
+	std::vector<Tile*> tiles;
 public:
+	TileMap(std::vector<Tile*>);
 	TileMap();
 	~TileMap();
 	void Update(float);

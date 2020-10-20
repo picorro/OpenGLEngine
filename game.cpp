@@ -45,7 +45,7 @@ void Game::Init()
 	// load textures
 	ResourceManager::LoadTexture("Resources/awesomeface.png", true, "Resources/awesomeface.png");
 	ResourceManager::LoadTexture("Resources/transparentface.png", true, "Resources/transparentface.png");
-	levelManager.LoadLevel(objects, level1);
+	levelManager.LoadLevel(objects, level1, Renderer);
 	objects.push_back(player);
 	for (int i = 0; i < objects.size(); i++)
 	{

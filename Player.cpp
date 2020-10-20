@@ -5,6 +5,7 @@ Player::Player(std::string textureName, float pX, float pY, float sX, float sY, 
 	this->textureName = textureName;
 	this->movementSpeed = movementSpeed;
 	physicsBody = PhysicsBody(this);
+	rectangleCollider = RectangleCollider(this);
 }
 
 Player::~Player()
@@ -15,6 +16,7 @@ Player::~Player()
 void Player::Update(float dt)
 {
 	physicsBody.Update(dt);
+	rectangleCollider.Update(dt);
 }
 void Player::Render()
 {

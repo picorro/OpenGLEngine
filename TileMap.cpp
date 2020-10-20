@@ -1,7 +1,13 @@
 #include "TileMap.h"
 
+TileMap::TileMap(std::vector<Tile*> tiles)
+{
+	this->tiles = tiles;
+}
+
 TileMap::TileMap()
 {
+
 }
 
 TileMap::~TileMap()
