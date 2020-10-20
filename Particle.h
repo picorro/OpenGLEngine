@@ -5,7 +5,7 @@
 class Particle: public Sprite
 {
 public:
-	Particle(std::string, float, float, float, float, float, Vector2, float, float);
+	Particle(std::string textureName, float pX, float pY, float sX, float sY, float rotation, Vector2 velocity, float rotationSpeed, float timeLeftUntilDestruction);
 	~Particle();
 	Vector2 velocity;
 	float rotationSpeed;

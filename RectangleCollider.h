@@ -9,9 +9,9 @@
 class RectangleCollider: public Component
 {
 public:
-	RectangleCollider(GameObject*);
+	RectangleCollider(GameObject* parent);
 	~RectangleCollider();
 	
-	void Update(float);
+	void Update(float dt);
 	std::vector<Vector2> GetRectangle();
 };

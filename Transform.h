@@ -4,7 +4,7 @@ class Transform
 {
 public:
 	Transform();
-	Transform(float, float, float, float, float);
+	Transform(float pX, float pY, float sX, float sY, float rotation);
 	~Transform();
 	Vector2 position;
 	Vector2 scale;

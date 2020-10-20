@@ -4,6 +4,6 @@
 class Entity: public GameObject
 {
 public:
-	Entity(float, float, float, float, float);
+	Entity(float pX, float pY, float sX, float sY, float rotation);
 };
 

@@ -12,7 +12,7 @@ EndOfParameters
 
 -----------------------------------
 
-Tilemap!
+ParticleSpawner!
 TextureCount 1
 1 Resources/transparentface.png
 SpawnRate 50

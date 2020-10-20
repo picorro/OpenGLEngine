@@ -4,12 +4,12 @@ class Vector2
 public:
 	float x, y;
 	Vector2();
-	Vector2(float, float);
+	Vector2(float X, float Y);
 	~Vector2();
-	Vector2 operator+(Vector2);
-	Vector2 operator-(Vector2);
-	void operator=(Vector2);
-	void operator+=(Vector2);
+	Vector2 operator+(Vector2 other);
+	Vector2 operator-(Vector2 other);
+	void operator=(Vector2 other);
+	void operator+=(Vector2 other);
 	Vector2 operator-=(Vector2);
 	Vector2 operator*(Vector2);
 	Vector2 operator*(float);

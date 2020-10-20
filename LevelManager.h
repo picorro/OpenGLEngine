@@ -9,15 +9,13 @@
 
 class LevelManager
 {
+	void LoadTileMap(std::ifstream& file, std::vector<GameObject*>& vec, SpriteRenderer* Renderer);
+	void LoadParticleSpawner(std::ifstream& file, std::vector<GameObject*>& vec);
 public:
 	LevelManager();
 	~LevelManager();
 	std::string currentLevel = "";
-	void LoadLevel(std::vector<GameObject*>&, std::string, SpriteRenderer*);
-	void SaveLevel(std::vector<GameObject*>&, std::string);
-	void LoadTileMap(std::ifstream&, std::vector<GameObject*>&, SpriteRenderer*);
-	void LoadParticleSpawner(std::ifstream&, std::vector<GameObject*>&);
+	void LoadLevel(std::vector<GameObject*>& vec, std::string fileName, SpriteRenderer* Renderer);
+	void SaveLevel(std::vector<GameObject*>& vec, std::string fileName);
 	void ClearLevel();
-private:
-
 };

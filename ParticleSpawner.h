@@ -14,7 +14,12 @@
 class ParticleSpawner: public GameObject
 {
 public:
-	ParticleSpawner(std::string, int, float, float, Vector2, Vector2, float, float, int, int, float, float);
+	ParticleSpawner(std::string textureName, int spawnRate,
+		float minimalParticleLifeTime, float maximalParticleLifeTime,
+		Vector2 minimalVelocity, Vector2 maximalVelocity,
+		float minimalRotationSpeed, float maximalRotationSpeed,
+		int minimalParticleSize, int maximalParticleSize,
+		float x, float y);
 	~ParticleSpawner();
 	std::vector<Particle*> particles;
 	std::string textureName;

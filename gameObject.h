@@ -14,8 +14,7 @@ public:
 	SpriteRenderer* Renderer = nullptr;
 
 	GameObject();
-	GameObject(float, float, float, float, float);
-	//GameObject(std::string, float, float, float, float);/
+	GameObject(float pX, float pY, float sX, float sY, float rotation);
 	~GameObject();
 
 	virtual void Render();

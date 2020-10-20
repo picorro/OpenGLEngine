@@ -6,10 +6,10 @@ class Sprite: public GameObject
 {
 public:
 	std::string textureName;
-	Sprite(std::string, float, float, float, float, float);
+	Sprite(std::string textureName, float pX, float pY, float sX, float sY, float rotation);
 	~Sprite();
 	void Render();
-	void Update(float);
+	void Update(float dt);
 
 private:
 

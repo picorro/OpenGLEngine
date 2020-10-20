@@ -7,9 +7,9 @@ class TileMap: public GameObject
 {
 	std::vector<Tile*> tiles;
 public:
-	TileMap(std::vector<Tile*>);
+	TileMap(std::vector<Tile*> tiles);
 	TileMap();
 	~TileMap();
-	void Update(float);
+	void Update(float dt);
 	void Render();
 };

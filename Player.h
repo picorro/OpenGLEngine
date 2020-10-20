@@ -8,14 +8,14 @@
 class Player: public Entity
 {
 public:
-	Player(std::string, float, float, float, float, float, float);
+	Player(std::string textureName, float pX, float pY, float sX, float sY, float rotation, float movementSpeed);
 	~Player();
 	PhysicsBody physicsBody = nullptr;
 	RectangleCollider rectangleCollider = nullptr;
 	std::string textureName;
 	float movementSpeed;
 
-	void Update(float);
+	void Update(float dt);
 	void Render();
 };
 

@@ -4,8 +4,8 @@ class Component
 {
 public:
 	GameObject* parent = nullptr;
-	Component(GameObject*);
+	Component(GameObject* parent);
 	~Component();
-	virtual void Update(float) {};
+	virtual void Update(float dt) {};
 };
 

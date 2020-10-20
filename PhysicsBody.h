@@ -9,8 +9,9 @@ class PhysicsBody: public Component
 public:
 	PhysicsBody(Entity*);
 	~PhysicsBody();
-
 	void Update(float);
+
 	Vector2 velocity;
+	bool useGravity;
 };
 
