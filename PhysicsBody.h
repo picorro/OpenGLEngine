@@ -7,11 +7,15 @@
 class PhysicsBody: public Component
 {
 public:
-	PhysicsBody(Entity*);
+	PhysicsBody(GameObject* parent, float mass, bool useGravity);
+	PhysicsBody();
 	~PhysicsBody();
-	void Update(float);
+	void Update(float dt);
+	void AddForce(Vector2 force);
 
 	Vector2 velocity;
+	Vector2 acceleration;
+	float mass;
 	bool useGravity;
 };
 

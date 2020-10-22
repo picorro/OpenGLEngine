@@ -10,6 +10,7 @@ class RectangleCollider: public Component
 {
 public:
 	RectangleCollider(GameObject* parent);
+	RectangleCollider();
 	~RectangleCollider();
 	
 	void Update(float dt);

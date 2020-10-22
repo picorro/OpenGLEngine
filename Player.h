@@ -10,8 +10,8 @@ class Player: public Entity
 public:
 	Player(std::string textureName, float pX, float pY, float sX, float sY, float rotation, float movementSpeed);
 	~Player();
-	PhysicsBody physicsBody = nullptr;
-	RectangleCollider rectangleCollider = nullptr;
+	PhysicsBody physicsBody;
+	RectangleCollider rectangleCollider;
 	std::string textureName;
 	float movementSpeed;
 

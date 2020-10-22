@@ -3,10 +3,17 @@ RectangleCollider::RectangleCollider(GameObject* parent): Component(parent)
 {
 
 }
+
+RectangleCollider::RectangleCollider()
+{
+
+}
+
 RectangleCollider::~RectangleCollider()
 {
 
 }
+
 void RectangleCollider::Update(float dt)
 {
 

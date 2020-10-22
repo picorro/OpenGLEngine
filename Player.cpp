@@ -4,7 +4,7 @@ Player::Player(std::string textureName, float pX, float pY, float sX, float sY, 
 {
 	this->textureName = textureName;
 	this->movementSpeed = movementSpeed;
-	physicsBody = PhysicsBody(this);
+	physicsBody = PhysicsBody(this, 10, true);
 	rectangleCollider = RectangleCollider(this);
 }
 

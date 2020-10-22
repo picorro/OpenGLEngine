@@ -15,6 +15,11 @@ Vector2::~Vector2()
 {
 }
 
+void Vector2::Reset()
+{
+	x = 0;
+	y = 0;
+}
 
 Vector2 Vector2::operator+(Vector2 other)
 {
@@ -41,3 +46,14 @@ Vector2 Vector2::operator*(float f)
 	Vector2 vector = Vector2(x * f, y * f);
 	return vector;
 }
+bool Vector2::operator==(Vector2 other)
+{
+	if (x == other.x && y == other.y)
+		return true;
+}
+bool Vector2::operator!=(Vector2 other)
+{
+	if (x != other.x && y != other.y)
+		return true;
+}
+

@@ -71,9 +71,6 @@ void Game::ProcessInput()
 	{
 		player->physicsBody.velocity.x = player->movementSpeed;
 	}
-	else
-		player->physicsBody.velocity.x = 0;
-
 	if (this->Keys[GLFW_KEY_W])
 	{
 		player->physicsBody.velocity.y = -player->movementSpeed;
@@ -82,10 +79,6 @@ void Game::ProcessInput()
 	{
 		player->physicsBody.velocity.y = player->movementSpeed;
 	}
-	else
-		player->physicsBody.velocity.y = 0;
-
-
 }
 void Game::Render()
 {
