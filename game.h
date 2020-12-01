@@ -26,8 +26,7 @@ public:
 	std::vector<GameObject*> objects;
 	LevelManager levelManager;
 	ParticleSpawner* particleSpawner;
-	Player* player = new Player("Resources/transparentface.png", 0, 0, 50, 50, 0, 100);
-
+	Player* player = new Player("Resources/transparentface.png", 0, 0, 50, 50, 0, 100, true);
 	//GameObject object;
 	// game state
 	GameState    State;

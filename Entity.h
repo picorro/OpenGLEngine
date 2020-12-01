@@ -4,6 +4,6 @@
 class Entity: public GameObject
 {
 public:
-	Entity(float pX, float pY, float sX, float sY, float rotation);
+	Entity(float pX, float pY, float sX, float sY, float rotation, bool hasCollider);
 };
 

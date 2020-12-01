@@ -4,7 +4,7 @@
 class Tile: public Sprite
 {
 public:
-	Tile(std::string textureName, float pX, float pY, float sX, float sY, float rotation);
+	Tile(std::string textureName, float pX, float pY, float sX, float sY, float rotation, bool hasCollider);
 	~Tile();
 	RectangleCollider rectangleCollider = nullptr;
 };

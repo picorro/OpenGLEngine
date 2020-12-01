@@ -33,7 +33,7 @@ public:
 	int minimalParticleSize;
 	int maximalParticleSize;
 
-	void Update(float dt);
+	void Update(float dt, std::vector<GameObject*>& objects);
 	void Render();
 private:
 	float timeUntilNextSpawn;

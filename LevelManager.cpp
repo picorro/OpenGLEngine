@@ -163,7 +163,9 @@ void LevelManager::LoadTileMap(std::ifstream &file, std::vector<GameObject*>& ve
 						auto it = map.find(atoi(str.c_str()));
 						if (it != map.end())
 						{
-							tileVector.push_back(new Tile(map[atoi(str.c_str())], x + textureWidth * i, y + textureHeight * j, textureWidth, textureHeight, 0));
+							Tile* tempTile = new Tile(map[atoi(str.c_str())], x + textureWidth * i, y + textureHeight * j, textureWidth, textureHeight, 0, true);
+							tileVector.push_back(tempTile);
+							vec.push_back(tempTile);
 						}
 					}
 				}

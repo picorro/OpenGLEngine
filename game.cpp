@@ -57,7 +57,7 @@ void Game::Update(float dt)
 {
 	for (int i = 0; i < objects.size(); i++)
 	{
-		objects[i]->Update(dt);
+		objects[i]->Update(dt, objects);
 	}
 }
 

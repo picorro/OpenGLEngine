@@ -1,8 +1,8 @@
 #pragma once
-#include "Entity.h";
-#include "Component.h";
-#include <vector>;
-#include "Vector2.h";
+#include "Entity.h"
+#include "Component.h"
+#include <vector>
+#include "Vector2.h"
 
 
 
@@ -13,6 +13,6 @@ public:
 	RectangleCollider();
 	~RectangleCollider();
 	
-	void Update(float dt);
-	std::vector<Vector2> GetRectangle();
+	void Update(float dt, std::vector<GameObject*>& objects);
+	bool IsColliding(std::vector<Vector2> other);
 };

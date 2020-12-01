@@ -29,7 +29,7 @@ ParticleSpawner::~ParticleSpawner()
 	}
 }
 
-void ParticleSpawner::Update(float dt)
+void ParticleSpawner::Update(float dt, std::vector<GameObject*>& objects)
 {
 	timeUntilNextSpawn -= dt;
 	if (timeUntilNextSpawn <= 0) //SPOOOWN
@@ -52,7 +52,7 @@ void ParticleSpawner::Update(float dt)
 		{
 			particles.erase(particles.begin() + i);
 		}
-		particles[i]->Update(dt);
+		particles[i]->Update(dt, objects);
 	}
 }
 

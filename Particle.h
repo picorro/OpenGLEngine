@@ -1,6 +1,6 @@
 #pragma once
-#include "Vector2.h";
-#include "Sprite.h";
+#include "Vector2.h"
+#include "Sprite.h"
 
 class Particle: public Sprite
 {
@@ -11,7 +11,7 @@ public:
 	float rotationSpeed;
 	float timeLeftUntilDestruction;
 	void Render();
-	void Update(float);
+	void Update(float dt, std::vector<GameObject*>& objects);
 private:
 
 };

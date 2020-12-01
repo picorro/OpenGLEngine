@@ -1,5 +1,6 @@
 #pragma once
 #include "Vector2.h";
+#include <vector>
 class Transform
 {
 public:
@@ -9,7 +10,7 @@ public:
 	Vector2 position;
 	Vector2 scale;
 	float rotation;
-
+	std::vector<Vector2> GetRectangle();
 private:
 
 };

@@ -1,11 +1,10 @@
 #include "Player.h"
 
-Player::Player(std::string textureName, float pX, float pY, float sX, float sY, float rotation, float movementSpeed) : Entity(pX, pY, sX, sY, rotation)
+Player::Player(std::string textureName, float pX, float pY, float sX, float sY, float rotation, float movementSpeed, bool hasCollider) : Entity(pX, pY, sX, sY, rotation, hasCollider)
 {
 	this->textureName = textureName;
 	this->movementSpeed = movementSpeed;
 	physicsBody = PhysicsBody(this, 10, true);
-	rectangleCollider = RectangleCollider(this);
 }
 
 Player::~Player()
@@ -13,10 +12,9 @@ Player::~Player()
 
 }
 
-void Player::Update(float dt)
+void Player::Update(float dt, std::vector<GameObject*>& objects)
 {
-	physicsBody.Update(dt);
-	rectangleCollider.Update(dt);
+	physicsBody.Update(dt, objects);
 }
 void Player::Render()
 {

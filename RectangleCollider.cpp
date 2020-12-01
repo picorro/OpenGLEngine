@@ -1,4 +1,5 @@
 #include "RectangleCollider.h"
+
 RectangleCollider::RectangleCollider(GameObject* parent): Component(parent)
 {
 
@@ -14,19 +15,16 @@ RectangleCollider::~RectangleCollider()
 
 }
 
-void RectangleCollider::Update(float dt)
+void RectangleCollider::Update(float dt, std::vector<GameObject*>& objects)
 {
 
 }
 
-std::vector<Vector2> RectangleCollider::GetRectangle()
+bool RectangleCollider::IsColliding(std::vector<Vector2> other)
 {
-	std::vector<Vector2> vec // returns corners {0,0  1,0  0,1  1,1}
-	{ 
-		Vector2 (parent->transform.position.x, parent->transform.position.y),
-		Vector2 (parent->transform.position.x + parent->transform.scale.x, parent->transform.position.y),
-		Vector2 (parent->transform.position.x, parent->transform.position.y + parent->transform.position.x + parent->transform.scale.y),
-		Vector2 (parent->transform.position.x + parent->transform.position.x + parent->transform.scale.x, parent->transform.position.y + parent->transform.position.x + parent->transform.scale.y)
-	};
-	return vec;
+	std::vector<Vector2> rect = parent->transform.GetRectangle();
+	if (rect[1].x > other[0].x && rect[0].x < other[1].x)
+		if (rect[2].y > other[0].y && rect[0].y < rect[2].y)
+			return true;
+	return false;
 }

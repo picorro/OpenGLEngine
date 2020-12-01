@@ -18,7 +18,7 @@ void Particle::Render()
 		glm::vec2(transform.position.x, transform.position.y), glm::vec2(transform.scale.x, transform.scale.y), transform.rotation, glm::vec3(1.0f, 1.0f, 1.0f));
 }
 
-void Particle::Update(float dt)
+void Particle::Update(float dt, std::vector<GameObject*>& objects)
 {
 	transform.position += velocity * dt;
 	transform.rotation += rotationSpeed * dt;

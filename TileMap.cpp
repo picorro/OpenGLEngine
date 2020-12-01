@@ -14,7 +14,7 @@ TileMap::~TileMap()
 {
 }
 
-void TileMap::Update(float dt)
+void TileMap::Update(float dt, std::vector<GameObject*>& objects)
 {
 	for (int i = 0; i < tiles.size(); i++)
 	{

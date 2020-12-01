@@ -21,3 +21,15 @@ Transform::~Transform()
 {
 
 }
+
+std::vector<Vector2> Transform::GetRectangle()
+{
+	std::vector<Vector2> vec
+	{
+		Vector2(position.x, position.y),
+		Vector2(position.x + scale.x, position.y),
+		Vector2(position.x, position.y + position.x + scale.y),
+		Vector2(position.x + position.x + scale.x, position.y + position.x + scale.y)
+	};
+	return vec;
+}

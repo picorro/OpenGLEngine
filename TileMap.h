@@ -10,6 +10,6 @@ public:
 	TileMap(std::vector<Tile*> tiles);
 	TileMap();
 	~TileMap();
-	void Update(float dt);
+	void Update(float dt, std::vector<GameObject*>& objects);
 	void Render();
 };
